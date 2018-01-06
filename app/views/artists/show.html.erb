@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Artist</strong>
+  <%= @artist.name %>
+</p>
+
+<p>
+  <div class="img">
+    <%= image_tag @artist.photo %>
+  </div>
+
+
+</p>
+
+  <%@artist.songs.each do |song|%>
+  <ul>
+    <li><%=song.title%></li>
+<h6><%=link_to "Delete song", artist_song_path(@artist, song), method: :delete, data: {confirm: "You sure?"}%></h6></li>  </ul>
+
+  <%end%>
+
+    <%= render 'songs/form' %>
+
+<%= link_to 'Back', artists_path %>
+<%= link_to "[Delete artist]", artist_path(@artist), method: :delete, data: {confirm: "You sure?"}%>
+
+<style>
+img {
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 300px;
+}
+
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+</style>
