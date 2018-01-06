@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h3><bold>Artists at:<bold><h3>
+<h2><strong> Codaisseurify <strong> <h2>
+
+    <% @artists.each do |artist| %>
+    <div class="row">
+      <div class="col-md-7">
+        <h4><%=link_to artist.name, artist%></h4>
+        <div class="img">
+          <%= image_tag artist.photo %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+
+    <style>
+    img {
+        display: inline-block;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 300px;
+    }
+
+    img:hover {
+        box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    }
+    </style>
