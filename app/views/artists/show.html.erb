@@ -18,10 +18,10 @@
   <%= render 'songs/form' %>
 
   <a href="#" onClick="cleanUpSongs(); return false">Delete all songs</a>
+  <a href="#" id="delete">Delete all songs</a>
 
 <%= link_to 'Back', artists_path %>
-<%= link_to "[Delete artist]", artist_path(@artist), method: :delete, data: {confirm: "You sure?"}%>
-<a href="#" id="delete">Delete all songs</a>
+<a><%= link_to "[Delete artist]", artist_path(@artist), method: :delete, data: {confirm: "You sure?"}, id: "deleteartist" %></a>
 
 <style>
 img {

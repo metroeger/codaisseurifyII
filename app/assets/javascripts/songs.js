@@ -1,14 +1,18 @@
 
-function submitSong(event) {
-  // stop the form from doing the default action, submitting...
-  event.preventDefault();
-  var title = $("#new-song").val();
-  createSong(title);
-  $("#new-song").val(null);
-}
-
 function createSong(title) {
+  var newSong = { title: title, completed: false };
   var checkboxId = "song-" + nextSongId();
+  var artistId = $("#deleteartist").attr('href');
+
+  $.ajax({
+    type: "POST",
+    url: artistId + "/songs.json",
+    data: JSON.stringify({
+        song: newSong
+    }),
+    contentType: "application/json",
+    dataType: "json"
+  });
 
   var listItem = $("<li></li>");
   listItem.addClass("song");
@@ -29,6 +33,13 @@ function createSong(title) {
   listItem.append(label);
 
   $("#songlist").append( listItem );
+}
+
+function submitSong(event) {
+  event.preventDefault();
+  var title = $("#new-song").val();
+  createSong(title);
+  $("#new-song").val(null);
 }
 
 function nextSongId() {
