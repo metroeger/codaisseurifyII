@@ -1,29 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Artist</strong>
-  <%= @artist.name %>
-</p>
-
-<p>
-  <div class="img">
-    <%= image_tag @artist.photo %>
-  </div>
-
-
-</p>
-
-  <%@artist.songs.each do |song|%>
-  <ul>
-    <li><%=song.title%></li>
-<h6><%=link_to "Delete song", artist_song_path(@artist, song), method: :delete, data: {confirm: "You sure?"}%></h6></li>  </ul>
-
+<div class="container">
+  <h1><strong>Artist</strong></h1>
+    <%= @artist.name %>
+    <div class="img">
+      <%= image_tag @artist.photo %>
+    </div>
+    <%@artist.songs.each do |song|%>
+  <ul id="songlist">
+    <li class="song">
+    <input id="song1" type="checkbox">
+    <label for="song1"><%=song.title%></li>
+    <h6><%=link_to "Delete song", artist_song_path(@artist, song), method: :delete, data: {confirm: "You sure?"}%></h6>
+  </ul>
   <%end%>
 
-    <%= render 'songs/form' %>
+  <%= render 'songs/form' %>
+
+  <a href="#" onClick="cleanUpSongs(); return false">Delete all songs</a>
 
 <%= link_to 'Back', artists_path %>
 <%= link_to "[Delete artist]", artist_path(@artist), method: :delete, data: {confirm: "You sure?"}%>
+<a href="#" id="delete">Delete all songs</a>
 
 <style>
 img {

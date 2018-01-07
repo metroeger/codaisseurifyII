@@ -7,6 +7,7 @@ class ArtistsController < ApplicationController
 
   def show
     @songs = @artist.songs.all
+    @song = Song.new
   end
 
   # DELETE /artists/1
