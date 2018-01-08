@@ -14,6 +14,8 @@ function createSong(title) {
     dataType: "json"
   });
 
+  //var checkboxId = data.id;
+
   var listItem = $("<li></li>");
   listItem.addClass("song");
 
@@ -46,14 +48,27 @@ function nextSongId() {
   return $(".song").length + 1;
 }
 
-function cleanUpSongs() {
-  var list = document.getElementById("songlist");
-  var items = document.getElementsByClassName("song");
-    list.remove(items);
-  }
 
+function deleteSongs(event) {
+  event.preventDefault();
+  songs = $(".allsongs").val();
+  delSongs(songs);
+  $(".allsongs").remove();
+}
+
+function delSongs(songs) {
+  artistId = $("#deleteartist").attr('href');
+  $.ajax({
+    type: "DELETE",
+    url: artistId + "/songs/" + ".json",
+    contentType: "application/json",
+    dataType: "json"})
+
+    .done(function(data) {
+    });
+}
 
 $(document).ready(function() {
   $("form").bind('submit', submitSong);
-  $("#clean-up").bind('click', cleanUpSongs);
+  $("#deleteallsongs").bind('click', deleteSongs);
 });

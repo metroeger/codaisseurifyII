@@ -6,22 +6,30 @@
     <div class="img">
       <%= image_tag @artist.photo %>
     </div>
+    <div class="allsongs">
+       <% if @songs!= nil %>
     <%@artist.songs.each do |song|%>
   <ul id="songlist">
     <li class="song">
     <input id="song1" type="checkbox">
     <label for="song1"><%=song.title%></li>
-    <h6><%=link_to "Delete song", artist_song_path(@artist, song), method: :delete, data: {confirm: "You sure?"}%></h6>
+    <h6><%=link_to "Delete song", artist_song_path(@artist, song), method: :delete, data: {confirm: "You sure?"}, id: "deletesong"%></h6>
   </ul>
+
   <%end%>
+  <%end%>
+
+  </div>
+
+
 
   <%= render 'songs/form' %>
 
-  <a href="#" onClick="cleanUpSongs(); return false">Delete all songs</a>
-  <a href="#" id="delete">Delete all songs</a>
+  <%= link_to 'Back', artists_path %>
 
-<%= link_to 'Back', artists_path %>
-<a><%= link_to "[Delete artist]", artist_path(@artist), method: :delete, data: {confirm: "You sure?"}, id: "deleteartist" %></a>
+  <a href="#" id="deleteallsongs">[Delete all songs]</a>
+  <a><%= link_to "[Delete artist]", artist_path(@artist), method: :delete, data: {confirm: "You sure?"}, id: "deleteartist" %></a>
+
 
 <style>
 img {

@@ -30,8 +30,6 @@ end
   end
 end
 
-end
-
   private
 
     def set_song
@@ -45,3 +43,4 @@ end
     def set_artist
     @artist = Artist.find_by_id(params[:id])
     end
+end
